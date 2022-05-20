@@ -16,73 +16,58 @@
         app:srcCompat="@drawable/logoroca"
 
         tools:srcCompat="@tools:sample/avatars" />
-
     <EditText
-        android:id="@+id/tvEmail"
-        android:layout_width="wrap_content"
+        android:id="@+id/etEmail"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
         android:hint="email"
-        android:inputType="textEmailAddress"/>
-
+        android:gravity="center"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        />
     <EditText
-        android:id="@+id/tvProveedor"
-        android:layout_width="wrap_content"
+        android:id="@+id/etPassword"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Proveedor"
-        android:inputType="textPersonName" />
-    <EditText
-        android:id="@+id/tvDireccion"
-        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:inputType="textPassword"
+        android:hint="Password"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Dirección"
-        android:inputType="textPersonName" />
-    <EditText
-        android:id="@+id/tvPhone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="telefono"
-        android:inputType="phone" />
+        android:layout_gravity="center"
+        android:gravity="center"
 
-    <Button
-        android:id="@+id/bGuardar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="5dp"
-        android:backgroundTint="#2196F3"
-        android:ems="13"
-        android:text="Guardar" />
+        android:orientation="horizontal">
 
-    <Button
+        <Button
+            android:backgroundTint="@color/colorPrimarioOscuro"
+            android:id="@+id/bRegistrar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:text="Registrar" />
+        <Space
+            android:layout_width="8dp"
+            android:layout_height="wrap_content"/>
 
-        android:id="@+id/bRecuperar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="5dp"
-        android:backgroundTint="#2196F3"
+        <Button
+            android:backgroundTint="@color/colorPrimario"
+            android:id="@+id/acceder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:layout_weight="1"
 
-        android:ems="13"
-        android:text="Recuerar" />
 
-    <Button
-        android:id="@+id/bEliminar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="5dp"
-        android:backgroundTint="#2196F3"
-
-        android:ems="13"
-        android:text="Eliminar" />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="5dp"
-        android:ems="13"
-
-        android:text="Olvidé Contraseña"/>
+            android:text="Acceder" />
+    </LinearLayout>
 
 
 

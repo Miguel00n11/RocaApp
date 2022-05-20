@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1081483951845",
+    "project_id": "base-datos-roca",
+    "storage_bucket": "base-datos-roca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1081483951845:android:9b8df2907de4be73511e0c",
+        "android_client_info": {
+          "package_name": "com.example.rocaapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1081483951845-76133tvfmlmsdj6vmvs2rn4q43eu406t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDmUEqRZvnfu8XUqvC_ND-zWWiS0hS0zPg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1081483951845-76133tvfmlmsdj6vmvs2rn4q43eu406t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

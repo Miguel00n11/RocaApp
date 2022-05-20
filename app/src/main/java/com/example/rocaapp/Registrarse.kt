@@ -10,46 +10,26 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 
-class MainActivity : AppCompatActivity() {
-
-
+class Registrarse : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-
-        val registrarse=findViewById<Button>(R.id.bRegistrar)
-        val acceder=findViewById<Button>(R.id.acceder)
-//        val enviarRegistro1=findViewById<Button>(R.id.bEnviarRegistro1)
-
-
-        val email=findViewById<EditText>( R.id.etEmail)
-        val password=findViewById<EditText>(R.id.etPassword)
+        setContentView(R.layout.activity_registrarse)
 
         auth = Firebase.auth
 
-        registrarse.setOnClickListener{showHome()}
-//        enviarRegistro1.setOnClickListener{}
-        acceder.setOnClickListener{acceder1(email.text.toString(),password.text.toString())}
+        val enviarRegistro1=findViewById<Button>(R.id.bEnviarRegistro1)
+        val email=findViewById<EditText>( R.id.etEmailRegistro)
+        val password=findViewById<EditText>(R.id.etPasswordRegistro)
 
 
+        enviarRegistro1.setOnClickListener{registrarse1(email.text.toString(),password.text.toString())}
     }
-
-    private fun showHome(){
-
-        val Registrarse=Intent(this,Registrarse::class.java)
-//        Registrarse.putExtra(TAG,"K")
-//            putExtra("Provider",provider.name)
-        startActivity(Registrarse)
-
-    }
-    private fun acceder1(email:String,password:String){
-        auth.signInWithEmailAndPassword(email, password)
+    private fun registrarse1(email:String,password:String){
+        auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
@@ -70,6 +50,14 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    private fun showHome(){
+
+        val Registrarse= Intent(this,Registrarse::class.java)
+//        Registrarse.putExtra(TAG,"K")
+//            putExtra("Provider",provider.name)
+        startActivity(Registrarse)
+
+    }
     private fun showAlert(){
         val builder= AlertDialog.Builder(this)
         builder.setTitle("Error")
