@@ -24,9 +24,12 @@ class Registrarse : AppCompatActivity() {
         val enviarRegistro1=findViewById<Button>(R.id.bEnviarRegistro1)
         val email=findViewById<EditText>( R.id.etEmailRegistro)
         val password=findViewById<EditText>(R.id.etPasswordRegistro)
+        val cancelar=findViewById<Button>(R.id.bCancelar)
+
 
 
         enviarRegistro1.setOnClickListener{registrarse1(email.text.toString(),password.text.toString())}
+        cancelar.setOnClickListener(){onBackPressed()}
     }
     private fun registrarse1(email:String,password:String){
         auth.createUserWithEmailAndPassword(email, password)
