@@ -4,12 +4,64 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
+    android:layout_gravity="center"
+    android:orientation="vertical"
     tools:context=".Layouts.Calas">
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvObra"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/etPesomaterialCala"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Peso del material" />
+
+    <EditText
+        android:id="@+id/etVolumenCala"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Volumen" />
+
+    <EditText
+        android:id="@+id/etHuemdadCala"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Humedad en %" />
+
+    <Button
+        android:id="@+id/bCalcularCala"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:text="Calcular" />
+
+    <TextView
+        android:id="@+id/tvResultadoCala"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:height="35sp"
+        android:hint="Resutado" />
+
+
+    <Button
+        android:id="@+id/bRegresarCalas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="regresar"
+        android:ems="10"
+
+
+        />
 
 
 </LinearLayout>
