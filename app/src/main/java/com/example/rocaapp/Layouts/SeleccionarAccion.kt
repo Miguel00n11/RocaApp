@@ -14,6 +14,7 @@ class SeleccionarAccion : AppCompatActivity() {
 
 
         val seleccionarCalas=findViewById<Button>(R.id.bCalas)
+        val inventario=findViewById<Button>(R.id.bInventario)
 
         seleccionarCalas.setOnClickListener(){
             val selecionarCalas= Intent(this,Calas ::class.java)
@@ -22,6 +23,10 @@ class SeleccionarAccion : AppCompatActivity() {
             startActivity(selecionarCalas)
         }
 
+        inventario.setOnClickListener(){
+            val selecionarCalas= Intent(this,inventario ::class.java)
+            startActivity(selecionarCalas)
+        }
 
 
     }
