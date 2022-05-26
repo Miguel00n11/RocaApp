@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.rocaapp.Cilindros
 import com.example.rocaapp.R
 
-class adapter (private  val userlist:ArrayList<Cilindros>):RecyclerView.Adapter<adapter.MyViewHolder> (){
+class Adapter (private  val userlist:ArrayList<Cilindros>):RecyclerView.Adapter<Adapter.MyViewHolder> (){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView= LayoutInflater.from(parent.context).inflate(

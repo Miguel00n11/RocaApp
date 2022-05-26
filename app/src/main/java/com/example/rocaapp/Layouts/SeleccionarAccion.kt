@@ -24,7 +24,7 @@ class SeleccionarAccion : AppCompatActivity() {
         }
 
         inventario.setOnClickListener(){
-            val selecionarCalas= Intent(this,inventario ::class.java)
+            val selecionarCalas= Intent(this,Inventario ::class.java)
             startActivity(selecionarCalas)
         }
 

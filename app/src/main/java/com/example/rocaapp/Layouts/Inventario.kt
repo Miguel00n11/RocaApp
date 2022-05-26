@@ -6,9 +6,10 @@ import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rocaapp.Cilindros
-import com.example.rocaapp.DAtos.adapter
+import com.example.rocaapp.DAtos.Adapter
 import com.example.rocaapp.R
 import com.google.firebase.database.*
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
@@ -28,20 +29,19 @@ class Inventario : AppCompatActivity() {
 
         userArrayList= arrayListOf<Cilindros>()
         getUserData()
-
 //        val cargar=findViewById<Button>(R.id.cargar)
 //        cargar.setOnClickListener{
 //            val database = Firebase.database
 //            val myRef = database.getReference("prueba").child("id")
 //
 //            myRef.removeValue()
-//
+//mi
 //        }
 
     }
     private fun getUserData() {
 
-        dbref= FirebaseDatabase.getInstance().getReference("inventario").child("Cilindros")
+        dbref= FirebaseDatabase.getInstance().getReference("inventario").child()
 
         dbref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snashot: DataSnapshot) {
@@ -51,7 +51,7 @@ class Inventario : AppCompatActivity() {
                         val user=userSnapshot.getValue(Cilindros::class.java)
                         userArrayList.add(user!!)
                     }
-                    userRecyclerView.adapter=adapter(userArrayList)
+                    userRecyclerView.adapter=Adapter(userArrayList)
                 }
 
 
