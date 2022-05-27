@@ -3,6 +3,7 @@ package com.example.rocaapp.Layouts
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rocaapp.Cilindros
@@ -29,6 +30,12 @@ class Inventario : AppCompatActivity() {
 
         userArrayList= arrayListOf<Cilindros>()
         getUserData()
+//
+//        val actualizar=findViewById<Button>(R.id.bAcutalizarCilindro)
+//        actualizar.setOnClickListener(){
+//            Toast.makeText(this, "", Toast.LENGTH_SHORT).show()
+//        }
+        
 //        val cargar=findViewById<Button>(R.id.cargar)
 //        cargar.setOnClickListener{
 //            val database = Firebase.database
@@ -41,7 +48,7 @@ class Inventario : AppCompatActivity() {
     }
     private fun getUserData() {
 
-        dbref= FirebaseDatabase.getInstance().getReference("inventario").child()
+        dbref= FirebaseDatabase.getInstance().getReference("inventario").child("Cilindros")
 
         dbref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snashot: DataSnapshot) {
@@ -51,7 +58,11 @@ class Inventario : AppCompatActivity() {
                         val user=userSnapshot.getValue(Cilindros::class.java)
                         userArrayList.add(user!!)
                     }
-                    userRecyclerView.adapter=Adapter(userArrayList)
+                    userRecyclerView.adapter=Adapter(userArrayList) { superHero ->
+                        onItemSelected(
+                            superHero
+                        )
+                    }
                 }
 
 
@@ -65,4 +76,8 @@ class Inventario : AppCompatActivity() {
         })
 
     }
+    fun onItemSelected(superHero1: Cilindros){
+        Toast.makeText(this, superHero1.usuario, Toast.LENGTH_SHORT).show()
+    }
+
 }
