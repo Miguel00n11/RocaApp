@@ -25,6 +25,7 @@ class Adapter (private  val userlist:ArrayList<Cilindros>, private val  onClickL
         holder.usuario.text=currentitem.usuario
         holder.fecha.text=currentitem.fecha
         holder.actualizar.text=currentitem.fecha
+        holder.idCilindros.text=currentitem.IdCilindro
         holder.render(currentitem,onClickListener)
 
 
@@ -39,11 +40,13 @@ class Adapter (private  val userlist:ArrayList<Cilindros>, private val  onClickL
         val binding = EquipoUsuarioBinding.bind(itemView)
         val usuario: TextView =itemView.findViewById(R.id.tvUsuario)
         val fecha: TextView =itemView.findViewById(R.id.tvFechaCilindros)
+        val idCilindros: TextView =itemView.findViewById(R.id.tvidCilindros)
         val actualizar: Button =itemView.findViewById(R.id.bAcutalizarCilindro)
 
         fun render(superHeroModel: Cilindros, onClickListener: (Cilindros) -> Unit) {
             binding.tvUsuario.text = superHeroModel.usuario
             binding.tvFechaCilindros.text = superHeroModel.fecha
+            binding.tvidCilindros.text = (adapterPosition+1).toString()
 
             actualizar.setOnClickListener(){ Toast.makeText(binding.tvUsuario.context, superHeroModel.fecha, Toast.LENGTH_SHORT).show()}
 

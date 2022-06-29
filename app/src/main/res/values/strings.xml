@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">RocaApp</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="aceptar">Aceptar</string>
 </resources>
