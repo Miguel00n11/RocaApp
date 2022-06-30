@@ -2,4 +2,10 @@
     <string name="app_name">RocaApp</string>
     <string name="cancelar">Cancelar</string>
     <string name="aceptar">Aceptar</string>
+    <string-array name="Personal">
+        <item>Carlos</item>
+        <item>ivan</item>
+        <item>miguel</item>
+        <item>cristina</item>
+    </string-array>
 </resources>

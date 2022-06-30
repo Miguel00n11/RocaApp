@@ -39,6 +39,10 @@ class MainActivity : AppCompatActivity() {
         acceder.setOnClickListener{acceder1(email.text.toString(),password.text.toString())}
 
 
+        val Acceder=Intent(this,SeleccionarAccion::class.java)
+
+        startActivity(Acceder)
+
 
     }
     private fun Registrar(){
