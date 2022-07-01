@@ -6,16 +6,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".Layouts.Inventario">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+
+    <SearchView
+        android:id="@+id/txtBuscar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="153dp"
+        tools:layout_editor_absoluteY="1dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cilindrosLista"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+
         tools:listitem="@layout/equipo_usuario" />
 
-
-
-
+</LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

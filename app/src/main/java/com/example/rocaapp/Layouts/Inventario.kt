@@ -14,25 +14,35 @@ import com.example.rocaapp.DAtos.Personal
 import com.example.rocaapp.DAtos.consultar_datos
 import com.example.rocaapp.R
 import com.example.rocaapp.otros.DatePickerFragment
+import com.google.common.collect.Collections2.filter
+import com.google.common.collect.Iterables.filter
+import com.google.common.collect.Iterators.filter
+import com.google.common.collect.Sets.filter
 //import com.example.rocaapp.databinding.EquipoUsuarioBinding
 import com.google.firebase.database.*
 import com.google.firebase.database.DatabaseReference
 
+
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import java.util.*
+import java.util.Locale.filter
+import java.util.Locale.getDefault
 import kotlin.collections.ArrayList
 
 private lateinit var dbref: DatabaseReference
 private lateinit var dbrefPersonal: DatabaseReference
 private lateinit var userRecyclerView: RecyclerView
 private lateinit var userArrayList:ArrayList<Cilindros>
+private lateinit var newuserArrayList:ArrayList<Cilindros>
+private lateinit var txtbuscar:SearchView
 //private lateinit var userArrayListPersonal:ArrayList<Personal>
 
-class Inventario : AppCompatActivity() {
+class Inventario : AppCompatActivity()  {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_inventario)
+
 
 
         userRecyclerView=findViewById(R.id.cilindrosLista)
@@ -40,6 +50,7 @@ class Inventario : AppCompatActivity() {
         userRecyclerView.setHasFixedSize(true)
 
         userArrayList= arrayListOf<Cilindros>()
+        newuserArrayList= arrayListOf<Cilindros>()
 //        userArrayListPersonal= arrayListOf<Personal>()
         getUserData()
 //
@@ -83,6 +94,48 @@ class Inventario : AppCompatActivity() {
                         )
                     }
                 }
+
+                val adaptador1:ArrayAdapter<String>
+
+                adaptador1= ArrayAdapter(this@Inventario,android.R.layout.simple_expandable_list_item_2)
+
+                txtbuscar=findViewById(R.id.txtBuscar)
+                txtbuscar.setOnQueryTextListener(object :SearchView.OnQueryTextListener{
+                    override fun onQueryTextSubmit(usuario: String): Boolean {
+                        txtbuscar.clearFocus()
+                        if (userArrayList.contains(Cilindros(usuario))){
+                            adaptador1.filter.filter(usuario)
+                        }else{
+                            Toast.makeText(applicationContext,"no encontrado",Toast.LENGTH_LONG).show()
+                        }
+                        return false
+                    }
+
+                    override fun onQueryTextChange(usuario: String): Boolean {
+//                       adaptador1.filter.filter(usuario)
+
+                        userArrayList.clear()
+                        val searchText=usuario!!.toLowerCase(Locale.getDefault())
+                        if (searchText.isNotEmpty()){
+                            newuserArrayList.forEach {
+                                if (it.usuario!!.toLowerCase(getDefault()).contains(searchText)){
+                                    userArrayList.add(it)
+                                }
+                            }
+                            userRecyclerView.adapter!!.notifyDataSetChanged()
+                        }else{
+                            userArrayList.clear()
+                            userArrayList.addAll(newuserArrayList)
+                            userRecyclerView.adapter!!.notifyDataSetChanged()
+                        }
+
+
+                        return false
+
+
+                    }
+
+                })
 
 
             }
