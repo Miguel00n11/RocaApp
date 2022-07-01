@@ -14,6 +14,7 @@ import com.example.rocaapp.DAtos.Personal
 import com.example.rocaapp.DAtos.consultar_datos
 import com.example.rocaapp.R
 import com.example.rocaapp.otros.DatePickerFragment
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.common.collect.Collections2.filter
 import com.google.common.collect.Iterables.filter
 import com.google.common.collect.Iterators.filter
@@ -51,28 +52,27 @@ class Inventario : AppCompatActivity()  {
 
         userArrayList= arrayListOf<Cilindros>()
         newuserArrayList= arrayListOf<Cilindros>()
-//        userArrayListPersonal= arrayListOf<Personal>()
         getUserData()
-//
-//        val actualizar=findViewById<Button>(R.id.bAcutalizarCilindro)
-//        actualizar.setOnClickListener(){
-//            Toast.makeText(this, "", Toast.LENGTH_SHORT).show()
-//        }
-        
-//        val cargar=findViewById<Button>(R.id.cargar)
-//        cargar.setOnClickListener{
-//            val database = Firebase.database
-//            val myRef = database.getReference("prueba").child("id")
-//
-//            myRef.removeValue()
-//mi
-//        }
+
+
+
+        val fab=findViewById<FloatingActionButton>(R.id.fab1)
+        fab.setOnClickListener {
+
+
+            agregarCilindro((userArrayList.size).toString())
+
+
+        }
+
 
     }
     private fun getUserData() {
 
         dbref= FirebaseDatabase.getInstance().getReference("inventario").child("Cilindros")
         dbrefPersonal= FirebaseDatabase.getInstance().getReference("personal")
+
+
 
         dbref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snashot: DataSnapshot) {
@@ -97,14 +97,15 @@ class Inventario : AppCompatActivity()  {
 
                 val adaptador1:ArrayAdapter<String>
 
-                adaptador1= ArrayAdapter(this@Inventario,android.R.layout.simple_expandable_list_item_2)
+                adaptador1= ArrayAdapter(this@Inventario,android.R.layout.simple_list_item_activated_1)
 
                 txtbuscar=findViewById(R.id.txtBuscar)
                 txtbuscar.setOnQueryTextListener(object :SearchView.OnQueryTextListener{
                     override fun onQueryTextSubmit(usuario: String): Boolean {
-                        txtbuscar.clearFocus()
+//                        txtbuscar.clearFocus()
                         if (userArrayList.contains(Cilindros(usuario))){
-                            adaptador1.filter.filter(usuario)
+//                            adaptador1.filter.filter(usuario)
+                            userArrayList.filter { cilindros: Cilindros ->  cilindros.usuario==usuario }
                         }else{
                             Toast.makeText(applicationContext,"no encontrado",Toast.LENGTH_LONG).show()
                         }
@@ -112,12 +113,14 @@ class Inventario : AppCompatActivity()  {
                     }
 
                     override fun onQueryTextChange(usuario: String): Boolean {
-//                       adaptador1.filter.filter(usuario)
+                       adaptador1.filter.filter(usuario)
+//                        userArrayList.filter { cilindros: Cilindros ->  cilindros.usuario=="Luis" }
+
 
                         userArrayList.clear()
                         val searchText=usuario!!.toLowerCase(Locale.getDefault())
                         if (searchText.isNotEmpty()){
-                            newuserArrayList.forEach {
+                            userArrayList.forEach {
                                 if (it.usuario!!.toLowerCase(getDefault()).contains(searchText)){
                                     userArrayList.add(it)
                                 }
@@ -125,7 +128,7 @@ class Inventario : AppCompatActivity()  {
                             userRecyclerView.adapter!!.notifyDataSetChanged()
                         }else{
                             userArrayList.clear()
-                            userArrayList.addAll(newuserArrayList)
+                            userArrayList.addAll(userArrayList)
                             userRecyclerView.adapter!!.notifyDataSetChanged()
                         }
 
@@ -146,31 +149,8 @@ class Inventario : AppCompatActivity()  {
 
 
         })
-//
-//        dbrefPersonal.addValueEventListener(object : ValueEventListener {
-//            override fun onDataChange(snashot: DataSnapshot) {
-//
-//                if (snashot.exists()){
-//                    for(userSnapshot in snashot.children){
-//                        val personal=userSnapshot.getValue(Cilindros::class.java)
-//                        userArrayListPersonal.add(personal!!)
-//                    }
-//                    userRecyclerView.adapter=Adapter(userArrayList) { superHero ->
-//                        onItemSelected(
-//                            superHero
-//                        )
-//                    }
-//                }
-//
-//
-//            }
-//
-//            override fun onCancelled(p0: DatabaseError) {
-//                TODO("Not yet implemented")
-//            }
-//
-//
-//        })
+
+
 
     }
     fun onItemSelected(superHero1: Cilindros){
@@ -231,7 +211,8 @@ class Inventario : AppCompatActivity()  {
 
 
             val datePicker=DatePickerFragment({day,month,year -> onDateSelect(day,month,year)
-            fecha.setText(onDateSelect(day,month,year))})
+                fecha.setText(onDateSelect(day,month+1,year))})
+
             datePicker.show(supportFragmentManager,"datePicker")
 
 
@@ -281,5 +262,71 @@ class Inventario : AppCompatActivity()  {
         val fecha=""+day+  "/"+month+"/"+year
         return fecha
     }
+
+    fun agregarCilindro(idd: String){
+        val builder1= AlertDialog.Builder(this)
+        val view1=layoutInflater.inflate(R.layout.actualizar_cilindro1,null)
+        builder1.setView(view1)
+        val dialog1=builder1.create()
+
+        dialog1.show()
+
+
+        val usuario=view1.findViewById<EditText>(R.id.etUsuarioActualizarCilindro1)
+        val fecha=view1.findViewById<EditText>(R.id.etFechaActulizarCilindro1)
+        val id1=view1.findViewById<TextView>(R.id.tvIdActualizarCilindro1)
+
+        id1.text=idd
+
+        val calendario1=view1.findViewById<Button>(R.id.mostrarCalendario)
+            calendario1.setOnClickListener {
+
+                val datePicker=DatePickerFragment({day,month,year -> onDateSelect(day,month,year)
+                    fecha.setText(onDateSelect(day,month+1,year))})
+
+                datePicker.show(supportFragmentManager,"datePicker")
+
+
+            }
+
+        val ActualizarCilindroAceptar=view1.findViewById<Button>(R.id.ActualizarCilindrosAceptar)
+        ActualizarCilindroAceptar.setOnClickListener(){
+
+
+            actualizarCilindros("${id1.text}", fecha = "${fecha.text}", usuario = "${usuario.text}")
+            dialog1.hide()
+        }
+
+
+
+//
+//        val ActualizarCilindroAceptar=view1.findViewById<Button>(R.id.ActualizarCilindrosAceptar)
+//        ActualizarCilindroAceptar.setOnClickListener(){
+//
+//
+//            val usuario=view1.findViewById<EditText>(R.id.etUsuarioActualizarCilindro1)
+//            val fecha=view1.findViewById<EditText>(R.id.etFechaActulizarCilindro1)
+////                val id1=view1.findViewById<TextView>(R.id.tvIdActualizarCilindro1)
+//            view1.findViewById<TextView>(R.id.tvIdActualizarCilindro1).setText(idd)
+//                fecha.setText(idd)
+//
+//            val calendario1=view1.findViewById<Button>(R.id.mostrarCalendario)
+//            calendario1.setOnClickListener {
+//
+//                Toast.makeText(this, userArrayList.size.toString(),Toast.LENGTH_LONG).show()
+//                fecha.setText(userArrayList.size.toString())
+//
+//
+//            }
+//
+//            Toast.makeText(this, userArrayList.size.toString(),Toast.LENGTH_LONG).show()
+//
+//            dialog1.hide()
+//        }
+    }
+
+
+
+
 
 }

@@ -27,7 +27,7 @@ class Adapter (private  val userlist:ArrayList<Cilindros>, private val  onClickL
         val currentitem=userlist[position]
         holder.usuario.text=currentitem.usuario
         holder.fecha.text=currentitem.fecha
-        holder.actualizar.text=currentitem.fecha
+//        holder.actualizar.text=currentitem.fecha
         holder.id.text=currentitem.id
         holder.render(currentitem,onClickListener)
 
@@ -44,32 +44,32 @@ class Adapter (private  val userlist:ArrayList<Cilindros>, private val  onClickL
         val usuario: TextView =itemView.findViewById(R.id.tvUsuario)
         val fecha: TextView =itemView.findViewById(R.id.tvFechaCilindros)
         val id: TextView =itemView.findViewById(R.id.tvidCilindros)
-        val actualizar: Button =itemView.findViewById(R.id.bAcutalizarCilindro)
+//        val actualizar: Button =itemView.findViewById(R.id.bAcutalizarCilindro)
 
         fun render(superHeroModel: Cilindros, onClickListener: (Cilindros) -> Unit) {
             binding.tvUsuario.text = superHeroModel.usuario
             binding.tvFechaCilindros.text = superHeroModel.fecha
             binding.tvidCilindros.text = superHeroModel.id
-
-            actualizar.setOnClickListener(){
-
-
-
-                Toast.makeText(binding.tvUsuario.context, superHeroModel.fecha, Toast.LENGTH_SHORT).show()
-
-                val builder= AlertDialog.Builder(it.context)
-                val view=(R.layout.actualizar_cilindro1)
-
-                builder.setView(view)
-
-
-                val dialog=builder.create()
-
-                dialog.show()
-
-
-
-            }
+//
+//            actualizar.setOnClickListener(){
+//
+//
+//
+//                Toast.makeText(binding.tvUsuario.context, superHeroModel.fecha, Toast.LENGTH_SHORT).show()
+//
+//                val builder= AlertDialog.Builder(it.context)
+//                val view=(R.layout.actualizar_cilindro1)
+//
+//                builder.setView(view)
+//
+//
+//                val dialog=builder.create()
+//
+//                dialog.show()
+//
+//
+//
+//            }
 
             itemView.setOnClickListener { onClickListener(superHeroModel) }
 
