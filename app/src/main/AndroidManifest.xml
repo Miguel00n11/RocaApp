@@ -10,6 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RocaApp">
         <activity
+            android:name=".Layouts.Elemento"
+            android:exported="false"
+            android:label="@string/title_activity_elemento"
+            android:theme="@style/Theme.RocaApp.NoActionBar" />
+        <activity
             android:name=".Layouts.Inventario"
             android:exported="false" />
         <activity

@@ -69,7 +69,7 @@ class Inventario : AppCompatActivity()  {
     }
     private fun getUserData() {
 
-        dbref= FirebaseDatabase.getInstance().getReference("inventario").child("Cilindros")
+        dbref= FirebaseDatabase.getInstance().getReference("inventario").child("${consultar_datos.elemento}")
         dbrefPersonal= FirebaseDatabase.getInstance().getReference("personal")
 
 
@@ -247,7 +247,7 @@ class Inventario : AppCompatActivity()  {
         fun actualizarCilindros(id:String,fecha:String,usuario:String){
 //        val binding = EquipoUsuarioBinding.bind(itemView)
 
-        dbref = FirebaseDatabase.getInstance().getReference("inventario").child("Cilindros")
+        dbref = FirebaseDatabase.getInstance().getReference("inventario").child("${consultar_datos.elemento}")
 
         val post=Cilindros(fecha = fecha, usuario = usuario,id=id)
         val childUp= hashMapOf<String,Any>(id to post)
