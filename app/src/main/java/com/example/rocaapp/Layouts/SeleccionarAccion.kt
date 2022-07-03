@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import com.example.rocaapp.R
 import com.example.rocaapp.Registrarse
+import com.example.rocaapp.adaptadores.elemento_recycler
 
 class SeleccionarAccion : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,7 +25,7 @@ class SeleccionarAccion : AppCompatActivity() {
         }
 
         inventario.setOnClickListener(){
-            val selecionarCalas= Intent(this,Elemento ::class.java)
+            val selecionarCalas= Intent(this,elemento_recycler ::class.java)
 
             startActivity(selecionarCalas)
         }

@@ -9,10 +9,13 @@ class ElementosAdapter(private val ElementoLista:List<ElementoSimple>):RecyclerV
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ElementoViewHolder {
         val layoutInflater=LayoutInflater.from(parent.context)
-        return ElementoViewHolder(layoutInflater.inflate(R.layout.elementos_inventarios,parent,false))
+        return ElementoViewHolder(layoutInflater.inflate(R.layout.activity_elemento,parent,false))
     }
 
     override fun onBindViewHolder(holder: ElementoViewHolder, position: Int) {
+        val item=ElementoLista[position]
+        holder.render(item)
+
     }
 
     override fun getItemCount(): Int {

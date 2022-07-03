@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RocaApp">
         <activity
+            android:name=".adaptadores.elemento_recycler"
+            android:exported="false" />
+        <activity
             android:name=".Layouts.Elemento"
             android:exported="false"
             android:label="@string/title_activity_elemento"

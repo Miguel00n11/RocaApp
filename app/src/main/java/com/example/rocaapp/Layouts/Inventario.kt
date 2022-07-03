@@ -65,6 +65,9 @@ class Inventario : AppCompatActivity()  {
 
         }
 
+        val txtelemento=findViewById<TextView>(R.id.txtElemento)
+        txtelemento.text=consultar_datos.elemento
+
 
     }
     private fun getUserData() {
@@ -99,46 +102,46 @@ class Inventario : AppCompatActivity()  {
 
                 adaptador1= ArrayAdapter(this@Inventario,android.R.layout.simple_list_item_activated_1)
 
-                txtbuscar=findViewById(R.id.txtBuscar)
-                txtbuscar.setOnQueryTextListener(object :SearchView.OnQueryTextListener{
-                    override fun onQueryTextSubmit(usuario: String): Boolean {
-//                        txtbuscar.clearFocus()
-                        if (userArrayList.contains(Cilindros(usuario))){
-//                            adaptador1.filter.filter(usuario)
-                            userArrayList.filter { cilindros: Cilindros ->  cilindros.usuario==usuario }
-                        }else{
-                            Toast.makeText(applicationContext,"no encontrado",Toast.LENGTH_LONG).show()
-                        }
-                        return false
-                    }
-
-                    override fun onQueryTextChange(usuario: String): Boolean {
-                       adaptador1.filter.filter(usuario)
-//                        userArrayList.filter { cilindros: Cilindros ->  cilindros.usuario=="Luis" }
-
-
-                        userArrayList.clear()
-                        val searchText=usuario!!.toLowerCase(Locale.getDefault())
-                        if (searchText.isNotEmpty()){
-                            userArrayList.forEach {
-                                if (it.usuario!!.toLowerCase(getDefault()).contains(searchText)){
-                                    userArrayList.add(it)
-                                }
-                            }
-                            userRecyclerView.adapter!!.notifyDataSetChanged()
-                        }else{
-                            userArrayList.clear()
-                            userArrayList.addAll(userArrayList)
-                            userRecyclerView.adapter!!.notifyDataSetChanged()
-                        }
-
-
-                        return false
-
-
-                    }
-
-                })
+//                txtbuscar=findViewById(R.id.txtBuscar)
+//                txtbuscar.setOnQueryTextListener(object :SearchView.OnQueryTextListener{
+//                    override fun onQueryTextSubmit(usuario: String): Boolean {
+////                        txtbuscar.clearFocus()
+//                        if (userArrayList.contains(Cilindros(usuario))){
+////                            adaptador1.filter.filter(usuario)
+//                            userArrayList.filter { cilindros: Cilindros ->  cilindros.usuario==usuario }
+//                        }else{
+//                            Toast.makeText(applicationContext,"no encontrado",Toast.LENGTH_LONG).show()
+//                        }
+//                        return false
+//                    }
+//
+//                    override fun onQueryTextChange(usuario: String): Boolean {
+//                       adaptador1.filter.filter(usuario)
+////                        userArrayList.filter { cilindros: Cilindros ->  cilindros.usuario=="Luis" }
+//
+//
+//                        userArrayList.clear()
+//                        val searchText=usuario!!.toLowerCase(Locale.getDefault())
+//                        if (searchText.isNotEmpty()){
+//                            userArrayList.forEach {
+//                                if (it.usuario!!.toLowerCase(getDefault()).contains(searchText)){
+//                                    userArrayList.add(it)
+//                                }
+//                            }
+//                            userRecyclerView.adapter!!.notifyDataSetChanged()
+//                        }else{
+//                            userArrayList.clear()
+//                            userArrayList.addAll(userArrayList)
+//                            userRecyclerView.adapter!!.notifyDataSetChanged()
+//                        }
+//
+//
+//                        return false
+//
+//
+//                    }
+//
+//                })
 
 
             }
