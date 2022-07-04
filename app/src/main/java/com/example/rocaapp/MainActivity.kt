@@ -8,11 +8,13 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import com.example.rocaapp.DAtos.consultar_datos
 import com.example.rocaapp.Layouts.SeleccionarAccion
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
+import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
 
@@ -36,12 +38,13 @@ class MainActivity : AppCompatActivity() {
 
         registrarse.setOnClickListener{Registrar()}
 //        enviarRegistro1.setOnClickListener{}
-        acceder.setOnClickListener{acceder1(email.text.toString(),password.text.toString())}
+
+    acceder.setOnClickListener{acceder1(email.text.toString(),password.text.toString())}
 
 
-        val Acceder=Intent(this,SeleccionarAccion::class.java)
-
-        startActivity(Acceder)
+//        val Acceder=Intent(this,SeleccionarAccion::class.java)
+//
+//        startActivity(Acceder)
 
 
     }
@@ -62,23 +65,27 @@ class MainActivity : AppCompatActivity() {
 
     }
     private fun acceder1(email:String,password:String){
-        auth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    Log.d("TAG", "createUserWithEmail:success")
-                    val user = auth.currentUser
-                    Acceder()
+        try {
+            auth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this) { task ->
+                    if (task.isSuccessful) {
+                        // Sign in success, update UI with the signed-in user's information
+                        Log.d("TAG", "createUserWithEmail:success")
+                        consultar_datos.usuarioApp=email
+                        val user = auth.currentUser
+                        Acceder()
 //                    updateUI(user)
-                } else {
-                    // If sign in fails, display a message to the user.
-                    Log.w("TAG", "createUserWithEmail:failure", task.exception)
-                    Toast.makeText(baseContext, "Authentication failed.",
-                        Toast.LENGTH_SHORT).show()
-                    showAlert()
+                    } else {
+                        // If sign in fails, display a message to the user.
+                        Log.w("TAG", "createUserWithEmail:failure", task.exception)
+                        Toast.makeText(baseContext, "Authentication failed.",
+                            Toast.LENGTH_SHORT).show()
+                        showAlert()
 //                    updateUI(null)
+                    }
                 }
-            }
+        }catch (e:Exception){}
+
 
 
     }
@@ -87,6 +94,16 @@ class MainActivity : AppCompatActivity() {
         val builder= AlertDialog.Builder(this)
         builder.setTitle("Error")
         builder.setMessage("Se ha producido un error de autentificacion al usuario")
+        builder.setPositiveButton("Aceptar",null)
+        val dialog: AlertDialog =builder.create()
+        dialog.show()
+
+
+    }
+    private fun showError(){
+        val builder= AlertDialog.Builder(this)
+        builder.setTitle("Error")
+        builder.setMessage("Introduzca los datos correspondientes")
         builder.setPositiveButton("Aceptar",null)
         val dialog: AlertDialog =builder.create()
         dialog.show()

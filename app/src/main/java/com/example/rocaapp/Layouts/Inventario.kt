@@ -26,6 +26,9 @@ import com.google.firebase.database.DatabaseReference
 
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import java.text.Format
+import java.time.*
+import java.time.format.DateTimeFormatter
 import java.util.*
 import java.util.Locale.filter
 import java.util.Locale.getDefault
@@ -228,11 +231,18 @@ class Inventario : AppCompatActivity()  {
             dialog.hide()
         }
         val ActualizarCilindroAceptar=view.findViewById<Button>(R.id.ActualizarCilindrosAceptar)
+
         ActualizarCilindroAceptar.setOnClickListener(){
 
 
 
-            actualizarCilindros("${id1.text}", fecha = "${fecha.text}", usuario = "${usuario.text}")
+            actualizarCilindros("${id1.text}",
+                fecha = "${fecha.text}",
+                usuario = "${usuario.text}",
+                usuarioApp = "${consultar_datos.usuarioApp}",
+                actualizacionItem="${ZonedDateTime.now(ZoneId.of("America/Mexico_City")).format(
+                    DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm:ss"))}"
+            )
 //            actualizarCilindros("1", fecha = "1", usuario = "1")
 //            consultar_datos.UsuarioCilindroActualziar=UsuarioCilindroActualizar.text.toString()
 //            Toast.makeText(this, "${id1.text}", Toast.LENGTH_SHORT).show()
@@ -247,12 +257,12 @@ class Inventario : AppCompatActivity()  {
     }
 
 //    fun actualizarCilindros(id:String,fecha:String,usuario:String){
-        fun actualizarCilindros(id:String,fecha:String,usuario:String){
+        fun actualizarCilindros(id:String,fecha:String,usuario:String,usuarioApp:String,actualizacionItem:String){
 //        val binding = EquipoUsuarioBinding.bind(itemView)
 
         dbref = FirebaseDatabase.getInstance().getReference("inventario").child("${consultar_datos.elemento}")
 
-        val post=Cilindros(fecha = fecha, usuario = usuario,id=id)
+        val post=Cilindros(fecha = fecha, usuario = usuario,id=id, usuarioApp = usuarioApp,actualizacionItem=actualizacionItem)
         val childUp= hashMapOf<String,Any>(id to post)
 
         dbref.updateChildren(childUp)
@@ -296,7 +306,13 @@ class Inventario : AppCompatActivity()  {
         ActualizarCilindroAceptar.setOnClickListener(){
 
 
-            actualizarCilindros("${id1.text}", fecha = "${fecha.text}", usuario = "${usuario.text}")
+            actualizarCilindros("${id1.text}",
+                fecha = "${fecha.text}",
+                usuario = "${usuario.text}",
+                usuarioApp = "${consultar_datos.usuarioApp}",
+                actualizacionItem = "${ZonedDateTime.now(ZoneId.of("America/Mexico_City")).format(
+                    DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm:ss"))}"
+            )
             dialog1.hide()
         }
 

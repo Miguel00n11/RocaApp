@@ -8,6 +8,7 @@ class consultar_datos {
         var fechaCilindroActualizar:String=""
         var idCilindroActualizar:Int=1
         var elemento:String?=null
+        var usuarioApp:String?=null
 
     }
 }
