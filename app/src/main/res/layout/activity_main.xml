@@ -29,6 +29,7 @@
         android:id="@+id/etPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textStyle=""
         android:ems="10"
         android:layout_gravity="center"
         android:gravity="center"
@@ -42,7 +43,7 @@
         android:layout_gravity="center"
         android:gravity="center"
 
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
 <!--        <Button-->
 <!--            android:backgroundTint="@color/colorPrimarioOscuro"-->
@@ -53,20 +54,32 @@
 <!--            android:layout_gravity="center"-->
 <!--            android:layout_weight="1"-->
 <!--            android:text="Registrar" />-->
-        <Space
-            android:layout_width="8dp"
-            android:layout_height="wrap_content"/>
+<!--        <Space-->
+<!--            android:layout_width="8dp"-->
+<!--            android:layout_height="wrap_content"/>-->
 
         <Button
             android:backgroundTint="@color/colorPrimario"
             android:id="@+id/acceder"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:layout_marginHorizontal="50dp"
             android:layout_weight="1"
 
 
             android:text="Acceder" />
+        <Button
+            android:backgroundTint="@color/colorPrimarioOscuro"
+            android:id="@+id/btInvitado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:layout_marginHorizontal="50dp"
+            android:layout_weight="1"
+
+
+            android:text="Modo Invitado" />
     </LinearLayout>
 
 

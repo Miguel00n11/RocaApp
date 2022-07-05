@@ -30,11 +30,14 @@ class SeleccionarAccion : AppCompatActivity() {
             startActivity(selecionarCalas)
         }
 
-        inventario.setOnClickListener(){
-            val selecionarCalas= Intent(this,elemento_recycler ::class.java)
+        if (consultar_datos.modoInvitado==false){
+            inventario.setOnClickListener(){
+                val selecionarCalas= Intent(this,elemento_recycler ::class.java)
 
-            startActivity(selecionarCalas)
+                startActivity(selecionarCalas)
+            }
         }
+
 
 
     }

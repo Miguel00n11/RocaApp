@@ -9,6 +9,7 @@ class consultar_datos {
         var idCilindroActualizar:Int=1
         var elemento:String?=null
         var usuarioApp:String?=null
+        var modoInvitado:Boolean=false
 
     }
 }

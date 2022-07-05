@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
 //        val registrarse=findViewById<Button>(R.id.bRegistrar)
         val acceder=findViewById<Button>(R.id.acceder)
 //        val enviarRegistro1=findViewById<Button>(R.id.bEnviarRegistro1)
+        val modoinvitado=findViewById<Button>(R.id.btInvitado)
 
 
         val email=findViewById<EditText>( R.id.etEmail)
@@ -39,13 +40,17 @@ class MainActivity : AppCompatActivity() {
 //        registrarse.setOnClickListener{Registrar()}
 //        enviarRegistro1.setOnClickListener{}
 
-    acceder.setOnClickListener{acceder1(email.text.toString(),password.text.toString())}
+    acceder.setOnClickListener{
+        acceder1(email.text.toString(),password.text.toString())
+    }
 
 
-        val Acceder=Intent(this,SeleccionarAccion::class.java)
+        modoinvitado.setOnClickListener {
 
-        startActivity(Acceder)
-
+        consultar_datos.modoInvitado=true
+            consultar_datos.usuarioApp="Modo Invitado"
+            val Acceder=Intent(this,SeleccionarAccion::class.java)
+            startActivity(Acceder) }
 
     }
     private fun Registrar(){
@@ -59,6 +64,7 @@ class MainActivity : AppCompatActivity() {
     private fun Acceder(){
 
         val Acceder=Intent(this,SeleccionarAccion::class.java)
+        consultar_datos.modoInvitado=false
 //        Registrarse.putExtra(TAG,"K")
 //            putExtra("Provider",provider.name)
         startActivity(Acceder)
