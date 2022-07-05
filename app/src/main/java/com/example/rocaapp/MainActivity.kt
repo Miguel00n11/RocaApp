@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
-        val registrarse=findViewById<Button>(R.id.bRegistrar)
+//        val registrarse=findViewById<Button>(R.id.bRegistrar)
         val acceder=findViewById<Button>(R.id.acceder)
 //        val enviarRegistro1=findViewById<Button>(R.id.bEnviarRegistro1)
 
@@ -36,15 +36,15 @@ class MainActivity : AppCompatActivity() {
 
         auth = Firebase.auth
 
-        registrarse.setOnClickListener{Registrar()}
+//        registrarse.setOnClickListener{Registrar()}
 //        enviarRegistro1.setOnClickListener{}
 
     acceder.setOnClickListener{acceder1(email.text.toString(),password.text.toString())}
 
 
-//        val Acceder=Intent(this,SeleccionarAccion::class.java)
-//
-//        startActivity(Acceder)
+        val Acceder=Intent(this,SeleccionarAccion::class.java)
+
+        startActivity(Acceder)
 
 
     }

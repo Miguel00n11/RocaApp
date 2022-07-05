@@ -44,15 +44,15 @@
 
         android:orientation="horizontal">
 
-        <Button
-            android:backgroundTint="@color/colorPrimarioOscuro"
-            android:id="@+id/bRegistrar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:text="Registrar" />
+<!--        <Button-->
+<!--            android:backgroundTint="@color/colorPrimarioOscuro"-->
+<!--            android:id="@+id/bRegistrar"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:ems="10"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_weight="1"-->
+<!--            android:text="Registrar" />-->
         <Space
             android:layout_width="8dp"
             android:layout_height="wrap_content"/>

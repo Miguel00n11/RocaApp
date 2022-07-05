@@ -14,7 +14,7 @@ import com.example.rocaapp.Layouts.Inventario
 import com.example.rocaapp.R
 import com.example.rocaapp.databinding.EquipoUsuarioBinding
 
-class Adapter (private  val userlist:ArrayList<Cilindros>, private val  onClickListener:(Cilindros)->Unit):RecyclerView.Adapter<Adapter.MyViewHolder> (){
+class Adapter (private  val userlist:MutableList<Cilindros>, private val  onClickListener:(Cilindros)->Unit):RecyclerView.Adapter<Adapter.MyViewHolder> (){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView= LayoutInflater.from(parent.context).inflate(
@@ -34,6 +34,9 @@ class Adapter (private  val userlist:ArrayList<Cilindros>, private val  onClickL
 
 
     }
+
+
+
 
     override fun getItemCount(): Int {
         return userlist.size

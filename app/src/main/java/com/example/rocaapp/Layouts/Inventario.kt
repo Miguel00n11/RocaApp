@@ -37,7 +37,7 @@ import kotlin.collections.ArrayList
 private lateinit var dbref: DatabaseReference
 private lateinit var dbrefPersonal: DatabaseReference
 private lateinit var userRecyclerView: RecyclerView
-private lateinit var userArrayList:ArrayList<Cilindros>
+private lateinit var userArrayList:MutableList<Cilindros>
 private lateinit var newuserArrayList:ArrayList<Cilindros>
 private lateinit var txtbuscar:SearchView
 //private lateinit var userArrayListPersonal:ArrayList<Personal>
@@ -47,14 +47,21 @@ class Inventario : AppCompatActivity()  {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_inventario)
 
-
+        val search=findViewById<SearchView>(R.id.searchView)
+//        val listView=findViewById<RecyclerView>(R.id.cilindrosLista)
+////        val search=findViewById<SearchView>(R.id.searchView)
+//        val adapterfiltro:ArrayAdapter<Cilindros> = ArrayAdapter(this,android.R.layout.simple_list_item_1,
+//            userArrayList
+//        )
+//
+//        listView.adapter=adapterfiltro
 
         userRecyclerView=findViewById(R.id.cilindrosLista)
         userRecyclerView.layoutManager= LinearLayoutManager(this)
         userRecyclerView.setHasFixedSize(true)
 
-        userArrayList= arrayListOf<Cilindros>()
-        newuserArrayList= arrayListOf<Cilindros>()
+        userArrayList= mutableListOf<Cilindros>()
+//        newuserArrayList= arrayListOf<Cilindros>()
         getUserData()
 
 
@@ -70,6 +77,7 @@ class Inventario : AppCompatActivity()  {
 
         val txtelemento=findViewById<TextView>(R.id.txtElemento)
         txtelemento.text=consultar_datos.elemento
+
 
 
     }
@@ -100,29 +108,96 @@ class Inventario : AppCompatActivity()  {
                         )
                     }
                 }
+//                val filtrogg:MutableList<Cilindros> = userArrayList
+//                val ususariogg:MutableList<Cilindros> = userArrayList.filter { it.usuario=="yo" } as MutableList<Cilindros>
+//
+//
+//                userRecyclerView.adapter=Adapter(ususariogg) { cilindros ->
+//
+//
+////                            superHero ->
+//                    onItemSelected(
+//                        cilindros
+//                    )
+//                }
+
+
+//                filtplicationContext, userArrayList.size.toString(),Toast.LENGTH_LONG).show()
+//                Toast.makeText(applicationContext, ususariogg.size.toString(),Toast.LENGTH_LONG).show()
+
+
+
 
                 val adaptador1:ArrayAdapter<String>
 
                 adaptador1= ArrayAdapter(this@Inventario,android.R.layout.simple_list_item_activated_1)
 
-//                txtbuscar=findViewById(R.id.txtBuscar)
-//                txtbuscar.setOnQueryTextListener(object :SearchView.OnQueryTextListener{
-//                    override fun onQueryTextSubmit(usuario: String): Boolean {
-////                        txtbuscar.clearFocus()
-//                        if (userArrayList.contains(Cilindros(usuario))){
-////                            adaptador1.filter.filter(usuario)
-//                            userArrayList.filter { cilindros: Cilindros ->  cilindros.usuario==usuario }
-//                        }else{
-//                            Toast.makeText(applicationContext,"no encontrado",Toast.LENGTH_LONG).show()
+                txtbuscar=findViewById(R.id.searchView)
+                txtbuscar.setOnQueryTextListener(object :SearchView.OnQueryTextListener{
+
+
+                    override fun onQueryTextSubmit(usuario: String): Boolean {
+//                        val filtrogg:MutableList<Cilindros> = userArrayList
+//                        val ususariogg:MutableList<Cilindros> = userArrayList.filter { it.usuario?.contains(usuario) == true } as MutableList<Cilindros>
+//
+//
+//                        userRecyclerView.adapter=Adapter(ususariogg) { cilindros ->
+//
+//
+////                            superHero ->
+//                            onItemSelected(
+//                                cilindros
+//                            )
 //                        }
-//                        return false
-//                    }
-//
-//                    override fun onQueryTextChange(usuario: String): Boolean {
+
+
+
+//                        txtbuscar.clearFocus()
+//                        if (userArrayList.contains(Cilindros(usuario))){
+//                            Toast.makeText(applicationContext, "lo contiene",Toast.LENGTH_LONG).show()
+////                            adaptador1.filter.filter(usuario)
+//                            userArrayList.filter { it.usuario==usuario }
+//                        }else{
+//                            Toast.makeText(applicationContext, "no lo contiene",Toast.LENGTH_LONG).show()
+//                        }
+                        return false
+                    }
+
+                    override fun onQueryTextChange(usuario: String): Boolean {
+
+                        val searchText=usuario!!.toLowerCase(Locale.getDefault())
+                        if (searchText.isNotEmpty()) {
+                            val filtrogg: MutableList<Cilindros> = userArrayList
+                            val ususariogg: MutableList<Cilindros> =
+//                                userArrayList.filter { it.usuario == usuario } as MutableList<Cilindros>
+                                userArrayList.filter { it.usuario?.contains(usuario) == true } as MutableList<Cilindros>
+
+
+
+                            userRecyclerView.adapter = Adapter(ususariogg) { cilindros ->
+
+
+//                            superHero ->
+                                onItemSelected(
+                                    cilindros
+                                )
+                            }
+                    }
+                    else{
+                            Toast.makeText(applicationContext, "hoola",Toast.LENGTH_LONG).show()
+                            userRecyclerView.adapter = Adapter(userArrayList) { cilindros ->
+
+
+//                            superHero ->
+                                onItemSelected(
+                                    cilindros
+                                )
+                            }
+                        }
 //                       adaptador1.filter.filter(usuario)
-////                        userArrayList.filter { cilindros: Cilindros ->  cilindros.usuario=="Luis" }
-//
-//
+//                        userArrayList.filter { cilindros: Cilindros ->  cilindros.usuario=="Luis" }
+
+
 //                        userArrayList.clear()
 //                        val searchText=usuario!!.toLowerCase(Locale.getDefault())
 //                        if (searchText.isNotEmpty()){
@@ -137,14 +212,14 @@ class Inventario : AppCompatActivity()  {
 //                            userArrayList.addAll(userArrayList)
 //                            userRecyclerView.adapter!!.notifyDataSetChanged()
 //                        }
-//
-//
-//                        return false
-//
-//
-//                    }
-//
-//                })
+
+
+                        return false
+
+
+                    }
+
+                })
 
 
             }
