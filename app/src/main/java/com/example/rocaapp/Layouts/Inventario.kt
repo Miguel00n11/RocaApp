@@ -137,12 +137,12 @@ class Inventario : AppCompatActivity()  {
 
 
                             userRecyclerView.adapter = Adapter(ususariogg) {
-//                                    cilindros -> onItemSelected(cilindros)
+                                    cilindros -> onItemSelected(cilindros)
                             }
                     }
                     else{
                             userRecyclerView.adapter = Adapter(userArrayList) {
-//                                    cilindros -> onItemSelected(cilindros)
+                                    cilindros -> onItemSelected(cilindros)
                             }
                         }
 
@@ -227,6 +227,8 @@ class Inventario : AppCompatActivity()  {
                 )
                 dialog.hide()
             }
+
+
         }else{}
 
 
@@ -293,6 +295,10 @@ class Inventario : AppCompatActivity()  {
                 actualizacionItem = "${ZonedDateTime.now(ZoneId.of("America/Mexico_City")).format(
                     DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm:ss"))}"
             )
+            dialog1.hide()
+        }
+        val ActualizarCilindroCancelar=view1.findViewById<Button>(R.id.ActualizarCilindrosCancelar)
+        ActualizarCilindroCancelar.setOnClickListener(){
             dialog1.hide()
         }
 

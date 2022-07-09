@@ -37,6 +37,11 @@ class MainActivity : AppCompatActivity() {
 
         auth = Firebase.auth
 
+//        consultar_datos.usuarioApp="cris.rdz10@gmail.com"
+//        val Acceder=Intent(this,SeleccionarAccion::class.java)
+//        startActivity(Acceder)
+
+
 //        registrarse.setOnClickListener{Registrar()}
 //        enviarRegistro1.setOnClickListener{}
 

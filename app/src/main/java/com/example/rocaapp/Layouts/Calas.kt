@@ -14,7 +14,7 @@ class Calas : AppCompatActivity() {
         setContentView(R.layout.activity_calas)
 
         val mvsm=findViewById<EditText>(R.id.etMVSM)
-        val mvarena=findViewById<EditText>(R.id.etMVarena)
+        val mvarena=findViewById<EditText>(R.id.etWarena)
         val peso=findViewById<EditText>(R.id.etPesomaterialCala)
         val Warena=findViewById<EditText>(R.id.etWarena)
         val humedad=findViewById<EditText>(R.id.etHuemdadCala)
